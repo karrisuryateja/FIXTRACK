@@ -1,2 +1,2 @@
 cd c:\FixTrack
-node server.js
+node backend/server.js

@@ -15,7 +15,8 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public")));
+// Update static file serving to point to frontend directory
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 // MongoDB connection
 mongoose
@@ -200,19 +201,24 @@ app.get('/api/admin/technicians', async (req, res) => {
   }
 });
 
-// Default route to serve register.html
+// Default route to serve index.html from frontend directory
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "register.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
 
-// Route to serve login.html
+// Route to serve login.html from frontend directory
 app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "login.html"));
 });
 
-// Route to serve main.html
+// Route to serve register.html from frontend directory
+app.get("/register", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "frontend", "register.html"));
+});
+
+// Route to serve main.html from frontend directory
 app.get("/main", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "main.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "main.html"));
 });
 
 // Start server
